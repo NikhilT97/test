@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice roll</title>
+    <style>
+    .dice{
+        float: left;
+        width: 2rem;
+        /* background-color: goldenrod; */
+        border: 2px solid black;
+        font-size: 30px;
+        text-align: center;
+        margin: 30px;
+    } 
+
+    </style>
+</head>
+<body>
+    <div id="winner">Winner</div>
+    <div id="member-1" class="dice">0</div>
+    <div id="member-2" class="dice">0</div>
+    <div id="member-3" class="dice">0</div>
+    <button id="roll">ROLL THE DICE</button>
+
+</body>
+</html>
+
+<script>
+    document.querySelector("#roll").addEventListener("click",rollDice)
+    
+
+    function rollDice(){
+        
+        var die1 = document.getElementById("member-1");
+        
+        var die2 = document.getElementById("member-2");
+    
+        var die3 = document.getElementById("member-3");
+
+        
+
+        
+        var member1 = Math.floor(Math.random() *6)+1;
+        var member2 = Math.floor(Math.random() *6)+1;
+        var member3 = Math.floor(Math.random() *6)+1;
+
+        die1.innerHTML = member1;
+        die2.innerHTML = member2;
+        die3.innerHTML = member3;
+
+
+        die1.style.backgroundColor="white"; 
+        die2.style.backgroundColor="white";
+        die3.style.backgroundColor="white";
+
+
+        // if member A wins 
+        if(member1 > member2 && member3 < member1){
+        die1.style.backgroundColor="green";
+
+    //    var dice1 = document.getElementById("winner")
+    //     dice1.innerHTML = "Member A Wins";
+
+        if(member3<member2){
+            die2.style.backgroundColor="yellow";
+            die3.style.backgroundColor="red"; 
+        }if(member2>member3){
+            die3.style.backgroundColor="red";
+            die2.style.backgroundColor="yellow"; 
+        }
+} 
+
+    // if member B wins 
+        if(member2 > member1 && member3 < member2){
+        die2.style.backgroundColor="green";
+
+        // document.getElementById("winner").innerHTML = "Member-B"
+
+        if(member1<member3){
+            die3.style.backgroundColor="yellow";
+            die1.style.backgroundColor="red"; 
+        }if(member1>member3){
+            die3.style.backgroundColor="red";
+            die1.style.backgroundColor="yellow"; 
+        }
+    } 
+
+    // if member C wins 
+        if(member3 > member2 && member1 < member3){
+        die3.style.backgroundColor="green";
+
+        // document.getElementById("winner").innerHTML = "Member-C"
+
+        if(member1<member2){
+            die2.style.backgroundColor="yellow";
+            die1.style.backgroundColor="red"; 
+        }if(member1>member2){
+            die2.style.backgroundColor="red";
+            die1.style.backgroundColor="yellow"; 
+        }
+    }
+        
+    // if members are equal
+        if(member1===member2){
+            die1.style.backgroundColor="blue";
+            die2.style.backgroundColor="blue";
+        }
+        if(member3===member2){
+            die2.style.backgroundColor="blue";
+            die3.style.backgroundColor="blue";
+        }    
+        if(member1===member3){
+            die1.style.backgroundColor="blue";
+            die3.style.backgroundColor="blue";
+        }
+
+
+
+        while(member1>member2 && member3<member1){
+            document.querySelector("#winner").innerHTML = "A is winner"
+        }
+        
+
+
+
+        console.log(member1);
+        console.log(member2);
+        console.log(member3);
+    }
+    
+
+
+
+</script>
